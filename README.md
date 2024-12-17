@@ -1,2 +1,1 @@
 # DefaultRisk
-![Uploading image.png…]()
