@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>DefaultRisk Analysis Platform</h1>
+<!-- 显示当前用户的电子邮件 -->
+<p>Welcome {{email}}! Upload your data to predict the probability of default.</p>
+
+<!-- 按钮容器 -->
+<div class="button-container">
+    <!-- 上传文件按钮 -->
+    <a href="{{ url_for('upload_file') }}" class="button">Upload File</a>
+
+    <!-- 查看图表按钮 -->
+    <a href="{{ url_for('charts') }}" class="button">View Charts</a>
+    
+</div>
+{% endblock %}

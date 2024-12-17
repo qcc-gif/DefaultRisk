@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>EDA Charts</h1>
+<div class="chart-container">
+    {% for chart in charts %}
+    <div class="chart">
+        <h3>{{ chart.title }}</h3>
+        <!-- 为每个图像添加 Lightbox 的 data-lightbox 属性 -->
+        <a href="{{ chart.path }}" data-lightbox="charts" data-title="{{ chart.title }}">
+            <img src="{{ chart.path }}" alt="{{ chart.title }}" class="chart-img">
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

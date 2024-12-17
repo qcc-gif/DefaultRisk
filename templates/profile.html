@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Personal Information</h1>
+
+<!-- 如果用户已登录，显示用户的电子邮件 -->
+{% if email %}
+    <p>Welcome, {{ email }}!</p>
+    <!-- 这里可以添加更多的用户详细信息 -->
+    <div class="button-container">
+        <a href="{{ url_for('logout') }}" class="button">Log Out</a>
+    </div>
+{% else %}
+    <p>You must be logged in to view your profile.</p>
+    <div class="button-container">
+        <a href="{{ url_for('login') }}" class="button">Login</a>
+    </div>
+{% endif %}
+{% endblock %}

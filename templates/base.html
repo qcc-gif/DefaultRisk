@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Default Risk Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- 引入 Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h2>Navigation</h2>
+            <ul>
+                <li class="{% if request.path==url_for('index')%} active{%endif%}">
+                    <a href="{{ url_for('index') }}">Home</a>
+                </li>
+                <li class="{% if request.path==url_for('profile')%} active{%endif%}">
+                    <a href="{{ url_for('profile') }}">Profile</a>
+                </li>
+                <li class="{% if request.path==url_for('charts')%} active{%endif%}">
+                    <a href="{{ url_for('charts') }}">Charts</a>
+                </li>
+                <li class="{% if request.path==url_for('upload_file')%} active{%endif%}">
+                    <a href="{{ url_for('upload_file') }}">Predict</a>
+                </li>
+
+                <li class="{% if request.path==url_for('generate')%} active{%endif%}">
+                    <a href="{{ url_for('generate') }}">Generate</a>
+                </li>
+
+            </ul>
+
+                <!-- 在导航栏底部添加返回首页的链接 -->
+            <div class="back-to-home">
+                <a href="{{ url_for('home') }}" class="back-link">Back</a>
+            </div>
+        </nav>
+
+
+        <main class="main-content">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="alert-container">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }} mt-3">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    
+    <!-- 引入 Bootstrap JS 和 jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- 引入 Lightbox2 的 CSS 文件 -->
+    <link href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- 引入 Lightbox2 的 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/js/lightbox.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,579 @@
+/*基本页面样式*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    text-align: center;
+}
+.home-page {
+    height: 100vh;  /* 确保背景覆盖整个视口 */
+    margin: 0;  /* 去除默认的外边距 */
+    background: linear-gradient(to bottom, rgba(45, 122, 76, 0.6), rgba(178, 59, 59, 0.6));
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-blend-mode: multiply;  /* 混合模式 */
+    font-family: Arial, sans-serif;
+    color: white;  /* 白色字体 */
+}
+
+/*页面容器*/
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+/* 导航栏（侧边栏）样式 */
+.sidebar {
+    background: linear-gradient(to bottom, #8ddcc9, #66c2b8); /* 渐变背景色，增加层次感 */
+    color: rgb(10, 10, 10); /* 字体颜色 */
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+    padding-left: 20px;  /* 增加左边的内边距 */
+    padding-right: 20px;  /* 右边内边距，避免内容紧贴右侧 */
+    padding-bottom: 20px;  /* 底部内边距，避免内容紧贴底部 */
+    box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.1);  /* 增加阴影效果，使侧边栏更立体 */
+    z-index: 1000;  /* 确保侧边栏显示在页面最上层 */
+    transition: transform 0.3s ease-in-out;  /* 为动画添加平滑过渡效果 */
+}
+
+/* 侧边栏标题 */
+.sidebar h2 {
+    color: #333;  /* 设置字体颜色 */
+    font-size: 1.5rem;  /* 设置字体大小 */
+    font-weight: bold;  /* 加粗字体 */
+    text-align: center;  /* 居中对齐标题 */
+    margin-bottom: 20px;  /* 设置底部间距 */
+    padding: 10px 0;  /* 为标题添加上下内边距 */
+    background-color: #007bff;  /* 设置背景色 */
+    color: white;  /* 设置文字颜色 */
+    border-radius: 5px;  /* 圆角效果 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* 添加轻微阴影 */
+}
+
+/* 悬停时标题效果 */
+.sidebar h2:hover {
+    background-color: #0056b3;  /* 悬停时更深的蓝色背景 */
+    cursor: pointer;  /* 鼠标悬停时显示为手型 */
+}
+/* 侧边栏菜单项 */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 15px 0;  /* 增加垂直间距 */
+}
+
+.sidebar ul li a {
+    text-align: center;
+    text-decoration: none;
+    color: #333;  /* 字体颜色 */
+    font-size: 1.1rem;  /* 字体大小 */
+    padding: 12px 20px;
+    display: block;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;  /* 悬停效果 */
+}
+
+.sidebar ul li a:hover {
+    background-color: #007bff;  /* 悬停时背景色 */
+    color: white;  /* 悬停时字体颜色 */
+}
+
+/* 底部返回首页的链接 */
+.sidebar .back-to-home {
+    position: absolute;
+    bottom: 20px;  /* 距离底部20px */
+    left: 0;
+    width: 100%;
+    text-align: center;  /* 居中对齐 */
+}
+
+.sidebar .back-link {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar .back-link:hover {
+    background-color: #0056b3;  /* 悬停时改变背景颜色 */
+}
+
+/* 响应式设计：小屏幕下侧边栏收缩 */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;  /* 小屏幕上减小宽度 */
+    }
+    
+    .sidebar ul li a {
+        font-size: 1rem;  /* 调整字体大小 */
+        padding: 10px 15px;  /* 调整内边距 */
+    }
+}
+
+/* 主内容区域 */
+.main-content {
+    margin-left: 270px; /* 留出侧边栏的空间 */
+    padding: 20px;
+    max-width: 1200px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chart-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;  /* 使元素之间有更多的空隙 */
+}
+
+.chart {
+    flex: 1 1 calc(33.333% - 20px);  /* 三列布局（每个占宽度的 1/3），去除间距 */
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* 更柔和的阴影效果 */
+    text-align: center;
+    border-radius: 8px;  /* 圆角 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;  /* 添加过渡效果 */
+}
+
+.chart:hover {
+    transform: translateY(-5px);  /* 鼠标悬停时轻微上移 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);  /* 悬停时阴影加深 */
+}
+
+.chart img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;  /* 为图片添加圆角 */
+    transition: transform 0.3s ease;  /* 图像的过渡效果 */
+}
+
+.chart img:hover {
+    transform: scale(1.05);  /* 鼠标悬停时放大图像 */
+}
+
+@media screen and (max-width: 768px) {
+    .chart {
+        flex: 1 1 calc(50% - 20px);  /* 在小屏幕上显示两列 */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .chart {
+        flex: 1 1 100%;  /* 在非常小的屏幕上显示一列 */
+    }
+}
+
+
+/* 弹窗样式 */
+.alert-container {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+/* 欢迎信息样式 */
+h1{
+    text-align: center;
+}
+p {
+    font-size: 18px;
+    color: #495057;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.art-title {
+    font-family: 'Great Vibes', cursive !important;
+    font-size: 3rem !important;
+    text-align: center !important;
+    color: #ff4b2b !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
+    margin: 400px 0 20px 0 !important;  /* 增加上边距 */
+}
+/* 进入按钮样式 */
+.enter-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s ease-in-out;
+}
+.enter-button:hover {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.4);
+}
+
+
+/* 自适应样式 */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 10px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 10px;
+    }
+}
+/* 上传部分样式 */
+.upload-section {
+    width: 100%;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.upload-section h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-style {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-style label {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.form-style input,
+.form-style select {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-style button {
+    width: 100%;
+    max-width: 200px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-style button:hover {
+    background-color: #45a049;
+}
+
+
+/* 容器样式 */
+.button-container {
+    display: flex;
+    flex-direction: column; /* 按钮垂直排列 */
+    align-items: center;    /* 水平居中 */
+    justify-content: center; /* 垂直居中（可选，视需要） */
+    margin-top: 20px;       /* 与其他内容的间距 */
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* 按钮背景色 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 10px 0; /* 按钮之间的垂直间距 */
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #478449;
+}
+
+/* 弹窗样式 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 100px;
+}
+
+.modal-content {
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.modal-content p {
+    font-size: 16px;
+    color: #555;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.modal-buttons .button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    font-size: 14px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-buttons .close-button {
+    background-color: #f44336;
+}
+
+.modal-buttons .button:hover {
+    opacity: 0.9;
+}
+
+/* 下载按钮与关闭按钮 */
+#download-button {
+    background-color: #28a745; /* 下载按钮的绿色 */
+}
+
+#download-button:hover {
+    background-color: #218838;
+}
+
+/* 基本导航样式 */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;  /* 使用 flexbox 排列 */
+    flex-direction: column;  /* 垂直排列 */
+    align-items: center;  /* 居中对齐 */
+}
+
+nav ul li {
+    margin: 10px 0;  /* 每个菜单项之间的水平间距 */
+}
+
+nav ul li a {
+    text-decoration: none;
+    padding: 12px 20px;  /* 增大按钮的可点击区域 */
+    display: block;
+    color: #333;
+    font-size: 1rem;  /* 字体大小 */
+    border-radius: 10px;  /* 圆角效果 */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;  /* 动画效果 */
+    font-weight: 500;  /* 普通字体加粗 */
+}
+
+/* 悬停效果 */
+nav ul li a:hover {
+    background: linear-gradient(45deg, #4CAF50, #8BC34A);  /* 渐变背景 */
+    color: #fff;  /* 悬停时字体变为白色 */
+    transform: scale(1.05);  /* 悬停时稍微放大 */
+}
+
+/* 当前页面高亮 */
+nav ul li.active a {
+    background-color: #007bff; /* 蓝色背景 */
+    color: white; /* 白色字体 */
+    font-weight: bold; /* 加粗字体 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* 当前项添加阴影效果 */
+}
+
+/* 小屏幕下的响应式布局 */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;  /* 垂直排列 */
+        align-items: center;  /* 居中对齐 */
+    }
+
+    nav ul li {
+        margin: 5px 0;  /* 垂直间距 */
+    }
+
+    nav ul li a {
+        padding: 10px 20px;  /* 为小屏幕提供适当的内边距 */
+    }
+}
+
+
+
+/* 登录页面容器 */
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto; /* 水平和垂直居中 */
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+    border-radius: 8px; /* 圆角 */
+    background-color: #f9f9f9; /* 背景色 */
+    text-align: center; /* 文本居中 */
+}
+
+/* 标题样式 */
+.login-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* 表单组 */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left; /* 标签对齐到左侧 */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* 输入框样式 */
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* 确保宽度包括内边距和边框 */
+    font-size: 16px;
+}
+
+.form-group input:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 4px rgba(76, 175, 80, 0.2);
+}
+
+/* 注册链接样式 */
+.register-link {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.register-link a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+
+/* 注册页面容器 */
+.register-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto; /* 水平和垂直居中 */
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+    border-radius: 8px; /* 圆角 */
+    background-color: #f9f9f9; /* 背景色 */
+    text-align: center; /* 文本居中 */
+}
+
+/* 标题样式 */
+.register-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+/* 登录链接样式 */
+.login-link {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.login-link a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: #b0bec5;
+    font-size: 0.5rem;  /* 字体大小 */
+    /* background-color: #fff; */
+    padding: 2px 0;  /* 给 footer 添加一些内边距 */
+    line-height: 12px;  /* 设置行高，确保文本不被压缩 */
+    min-height: 20px;  /* 设置最小高度，确保字体能显示 */
+}
+
+footer img {
+    height: 10px;  /* 设置图片较小的高度 */
+    margin-right: 5px;  /* 图片与文本之间的间距 */
+}
